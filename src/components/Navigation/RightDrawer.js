@@ -28,6 +28,8 @@ const RightDrawer = ({ open, onClickHandler }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  const iconSize = 24;
+
   return (
     <Drawer
       variant="temporary"
@@ -47,17 +49,17 @@ const RightDrawer = ({ open, onClickHandler }) => {
         <Divider />
         <Item
           name="Men"
-          icon={<FaMale size="24" />}
+          icon={<FaMale size={iconSize} />}
           onClickHandler={() => navigate("men")}
         />
         <Item
           name="Women"
-          icon={<FaFemale size="24" />}
+          icon={<FaFemale size={iconSize} />}
           onClickHandler={() => navigate("women")}
         />
         <Item
           name="Kids"
-          icon={<FaChild size="24" />}
+          icon={<FaChild size={iconSize} />}
           onClickHandler={() => navigate("kids")}
         />
       </List>

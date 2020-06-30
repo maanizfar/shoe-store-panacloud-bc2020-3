@@ -8,7 +8,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 import NavLink from "./NavLink";
 import CartButton from "./CartButton";
-import RightDrawer from "./RightDrawer";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,15 +17,13 @@ const useStyles = makeStyles((theme) => ({
   links: {
     display: "flex",
   },
+  menuButton: {
+    color: theme.palette.primary.contrastText,
+  },
 }));
 
-const Navbar = () => {
+const Navbar = ({ onMenuClickHandler }) => {
   const classes = useStyles();
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-
-  const handleDrawerOpen = (value) => {
-    setDrawerOpen(value);
-  };
 
   return (
     <>
@@ -47,10 +44,10 @@ const Navbar = () => {
 
             <Hidden smUp>
               <IconButton
+                className={classes.menuButton}
                 edge="end"
-                color="inherit"
                 aria-label="menu"
-                onClick={() => handleDrawerOpen(true)}
+                onClick={onMenuClickHandler}
               >
                 <MenuIcon />
               </IconButton>
@@ -58,11 +55,6 @@ const Navbar = () => {
           </div>
         </Toolbar>
       </AppBar>
-
-      <RightDrawer
-        open={drawerOpen}
-        onClickHandler={() => handleDrawerOpen(false)}
-      />
     </>
   );
 };
