@@ -35,10 +35,10 @@ const Navbar = () => {
           <img src="/logo.png" alt="logo" width="64px" />
           <Hidden xsDown>
             <div className={classes.links}>
-              <NavLink name="Home" />
-              <NavLink name="Men" />
-              <NavLink name="Women" />
-              <NavLink name="Kids" />
+              <NavLink name="Home" to="/" />
+              <NavLink name="Men" to="men" />
+              <NavLink name="Women" to="women" />
+              <NavLink name="Kids" to="kids" />
             </div>
           </Hidden>
 

@@ -9,14 +9,16 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { FaMale, FaChild, FaFemale } from "react-icons/fa";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useNavigate } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: 240,
   },
 }));
 
-const Item = ({ name, icon }) => (
-  <ListItem button>
+const Item = ({ name, icon, onClickHandler }) => (
+  <ListItem button onClick={onClickHandler}>
     <ListItemIcon>{icon}</ListItemIcon>
     <ListItemText primary={name} />
   </ListItem>
@@ -24,6 +26,8 @@ const Item = ({ name, icon }) => (
 
 const RightDrawer = ({ open, onClickHandler }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   return (
     <Drawer
       variant="temporary"
@@ -35,11 +39,27 @@ const RightDrawer = ({ open, onClickHandler }) => {
       onClick={onClickHandler}
     >
       <List>
-        <Item name="Home" icon={<HomeIcon />} />
+        <Item
+          name="Home"
+          icon={<HomeIcon />}
+          onClickHandler={() => navigate("/")}
+        />
         <Divider />
-        <Item name="Men" icon={<FaMale size="24" />} />
-        <Item name="Women" icon={<FaFemale size="24" />} />
-        <Item name="Kids" icon={<FaChild size="24" />} />
+        <Item
+          name="Men"
+          icon={<FaMale size="24" />}
+          onClickHandler={() => navigate("men")}
+        />
+        <Item
+          name="Women"
+          icon={<FaFemale size="24" />}
+          onClickHandler={() => navigate("women")}
+        />
+        <Item
+          name="Kids"
+          icon={<FaChild size="24" />}
+          onClickHandler={() => navigate("kids")}
+        />
       </List>
     </Drawer>
   );

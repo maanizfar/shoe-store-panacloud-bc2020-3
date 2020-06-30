@@ -2,11 +2,15 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     border: `0px solid transparent`,
     borderBottomWidth: "2px",
+    color: theme.palette.primary.contrastText,
+    textDecoration: "none",
 
     "&:hover": {
       cursor: "pointer",
@@ -15,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavLink = ({ name }) => {
+const NavLink = ({ name, to }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <Link to={to} className={classes.container}>
       <Typography>{name}</Typography>
-    </div>
+    </Link>
   );
 };
 
