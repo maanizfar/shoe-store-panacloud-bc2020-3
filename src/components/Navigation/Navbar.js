@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
   links: {
     display: "flex",
   },
@@ -28,7 +31,7 @@ const Navbar = ({ onMenuClickHandler }) => {
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" className={classes.appBar}>
         <Toolbar className={classes.container}>
           <Link to="/">
             <img src="/logo.png" alt="logo" width="64px" />
