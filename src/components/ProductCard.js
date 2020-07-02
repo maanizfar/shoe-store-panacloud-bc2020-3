@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = ({ product }) => {
   const classes = useStyles();
-  const { addToCart, cart } = useContext(GlobalContext);
+  const { addToCart } = useContext(GlobalContext);
 
   function handleAddToCart() {
     addToCart(product);

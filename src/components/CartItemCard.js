@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CancelIcon from "@material-ui/icons/Cancel";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
+import GlobalContext from "../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,25 +69,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartItemCard = () => {
+const CartItemCard = ({ product }) => {
   const classes = useStyles();
-  const product = {
-    id: 1,
-    name: "Nike React Infinity Run Flyknit",
-    brand: "NIKE",
-    gender: "MEN",
-    category: "RUNNING",
-    price: 160,
-    is_in_inventory: true,
-    items_left: 3,
-    items: 1,
-    imageURL:
-      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-665455a5-45de-40fb-945f-c1852b82400d/react-infinity-run-flyknit-mens-running-shoe-zX42Nc.jpg",
-  };
+  const { cancelCartItem } = useContext(GlobalContext);
+
+  function handleCancelBtn() {
+    console.log("cancel ", product.name);
+    cancelCartItem(product);
+  }
 
   return (
     <Grid container className={classes.root}>
-      <IconButton color="inherit" className={classes.cancelBtn}>
+      <IconButton
+        color="inherit"
+        className={classes.cancelBtn}
+        onClick={handleCancelBtn}
+      >
         <CancelIcon />
       </IconButton>
       <Grid item xs={4}>

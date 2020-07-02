@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import GlobalContext from "../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
 
 const OrderSummary = () => {
   const classes = useStyles();
+  const { cart } = useContext(GlobalContext);
+
+  const items = cart.map((p) => p.items);
+  const prices = cart.map((p) => p.price * p.items);
+
+  let numOfItems = 0;
+  let totalPrice = 0;
+  if (items.length) numOfItems = items.reduce((a, b) => a + b);
+  if (prices.length) totalPrice = prices.reduce((a, b) => a + b);
 
   return (
     <>
@@ -37,8 +47,8 @@ const OrderSummary = () => {
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.row}>
-          <Typography variant="button">4 items</Typography>
-          <Typography variant="button">$625.00</Typography>
+          <Typography variant="button">{numOfItems} items</Typography>
+          <Typography variant="button">${totalPrice}</Typography>
         </Grid>
         <Grid item xs={12} className={classes.row}>
           <Typography variant="button">Delivery</Typography>
@@ -50,7 +60,7 @@ const OrderSummary = () => {
         </Grid>
         <Grid item xs={12} className={classes.row}>
           <Typography variant="button">Total</Typography>
-          <Typography variant="button">$625.00</Typography>
+          <Typography variant="button">${totalPrice}</Typography>
         </Grid>
       </Grid>
       <Button

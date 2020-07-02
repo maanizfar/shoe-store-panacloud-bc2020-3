@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import CartItemList from "../components/CartItemList";
 import { Grid, Typography, Container } from "@material-ui/core";
 import OrderSummary from "../components/OrderSummary";
 import { makeStyles } from "@material-ui/core/styles";
+import GlobalContext from "../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -19,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 const CartPage = () => {
   const classes = useStyles();
+  const { cart } = useContext(GlobalContext);
+
+  const prices = cart.map((p) => p.price * p.items);
+
+  let totalPrice = 0;
+  if (prices.length) totalPrice = prices.reduce((a, b) => a + b);
 
   return (
     <Container>
@@ -26,7 +33,7 @@ const CartPage = () => {
         Your cart
       </Typography>
       <Typography variant="button" component="p" className={classes.total}>
-        Total: <strong>$625</strong>
+        Total: <strong>${totalPrice}</strong>
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
