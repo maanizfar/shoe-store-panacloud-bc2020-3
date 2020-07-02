@@ -8,11 +8,15 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./styles/theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import GlobalDataProvider from "./state/GlobalDataProvider";
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <Router>
-      <App />
+      <GlobalDataProvider>
+        <App />
+      </GlobalDataProvider>
     </Router>
   </ThemeProvider>,
   document.getElementById("root")

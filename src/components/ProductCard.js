@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // maxWidth: 500,
+    height: "100%",
     position: "relative",
   },
   media: {
@@ -66,20 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   const classes = useStyles();
-
-  const [product, setProduct] = useState({
-    name: "Nike React Infinity Run Flyknit",
-    brand: "NIKE",
-    gender: "MEN",
-    category: "RUNNING",
-    price: 160,
-    is_in_inventory: true,
-    items_left: 3,
-    imageURL:
-      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-665455a5-45de-40fb-945f-c1852b82400d/react-infinity-run-flyknit-mens-running-shoe-zX42Nc.jpg",
-  });
 
   return (
     <Card className={classes.root}>

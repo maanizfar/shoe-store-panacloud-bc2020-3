@@ -11,28 +11,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductGrid = () => {
+const ProductGrid = ({ products }) => {
   const classes = useStyles();
   return (
     <Grid container spacing={2} className={classes.root}>
-      <Grid item xs={6} md={4}>
-        <ProductCard />
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <ProductCard />
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <ProductCard />
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <ProductCard />
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <ProductCard />
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <ProductCard />
-      </Grid>
+      {products.length > 0 ? (
+        products.map((product) => (
+          <Grid id={product.id} item xs={6} md={4}>
+            <ProductCard product={product} />
+          </Grid>
+        ))
+      ) : (
+        <p>No product available</p>
+      )}
     </Grid>
   );
 };
