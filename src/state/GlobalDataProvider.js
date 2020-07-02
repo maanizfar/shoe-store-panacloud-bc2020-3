@@ -3,7 +3,7 @@ import GlobalContext, { initialState } from "./GlobalContext";
 import reducer, {
   RECIEVE_PRODUCTS,
   ADD_TO_CART,
-  REMOVE_FROM_CART,
+  CANCEL_CART,
 } from "./DataReducer";
 
 const GlobalDataProvider = ({ children }) => {
@@ -19,14 +19,17 @@ const GlobalDataProvider = ({ children }) => {
   function addToCart(product) {
     dispatch({
       type: ADD_TO_CART,
-      payload: product,
+      payload: {
+        ...product,
+        items: 1,
+      },
     });
   }
 
-  function removeFromCart(productID) {
+  function cancelCartItem(product) {
     dispatch({
-      type: REMOVE_FROM_CART,
-      payload: productID,
+      type: CANCEL_CART,
+      payload: product,
     });
   }
 
@@ -37,7 +40,7 @@ const GlobalDataProvider = ({ children }) => {
         cart: state.cart,
         recieveProducts,
         addToCart,
-        removeFromCart,
+        cancelCartItem,
       }}
     >
       {children}
