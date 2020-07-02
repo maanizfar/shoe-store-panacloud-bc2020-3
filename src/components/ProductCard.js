@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
+import GlobalContext from "../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,6 +69,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = ({ product }) => {
   const classes = useStyles();
+  const { addToCart, cart } = useContext(GlobalContext);
+
+  function handleAddToCart() {
+    addToCart(product);
+  }
 
   return (
     <Card className={classes.root}>
@@ -80,7 +86,11 @@ const ProductCard = ({ product }) => {
         ${product.price}
       </Typography>
       {product.items_left > 0 && (
-        <IconButton color="inherit" className={classes.addToCardBtn}>
+        <IconButton
+          color="inherit"
+          className={classes.addToCardBtn}
+          onClick={handleAddToCart}
+        >
           <AddShoppingCartIcon />
         </IconButton>
       )}

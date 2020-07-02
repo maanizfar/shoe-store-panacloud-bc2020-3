@@ -17,7 +17,7 @@ const ProductGrid = ({ products }) => {
     <Grid container spacing={2} className={classes.root}>
       {products.length > 0 ? (
         products.map((product) => (
-          <Grid id={product.id} item xs={6} md={4}>
+          <Grid key={product.id} item xs={6} md={4}>
             <ProductCard product={product} />
           </Grid>
         ))
