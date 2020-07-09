@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CartItemCard from "./CartItemCard";
 import GlobalContext from "../state/GlobalContext";
+import { Typography } from "@material-ui/core";
 
 const CartItemList = () => {
   const { cart } = useContext(GlobalContext);
@@ -12,7 +13,11 @@ const CartItemList = () => {
           <CartItemCard key={product.id} product={product} />
         ))
       ) : (
-        <p>Cart is empty</p>
+        <div style={{ width: "100%" }}>
+          <Typography color="error" variant="body1">
+            Cart is empty
+          </Typography>
+        </div>
       )}
     </>
   );

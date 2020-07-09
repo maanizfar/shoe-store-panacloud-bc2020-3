@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     color: theme.palette.primary.contrastText,
   },
+  rightContainer: {
+    [theme.breakpoints.up("md")]: {
+      marginLeft: 80,
+    },
+  },
 }));
 
 const Navbar = ({ onMenuClickHandler }) => {
@@ -34,18 +39,18 @@ const Navbar = ({ onMenuClickHandler }) => {
       <AppBar position="sticky" className={classes.appBar}>
         <Toolbar className={classes.container}>
           <Link to="/">
-            <img src="/logo.png" alt="logo" width="64px" />
+            <img src="/logo.png" alt="logo" width="128px" />
           </Link>
           <Hidden xsDown>
             <div className={classes.links}>
-              <NavLink name="Home" to="/" />
+              <NavLink name="Home" to="/" end={true} />
               <NavLink name="Men" to="men" />
               <NavLink name="Women" to="women" />
               <NavLink name="Kids" to="kids" />
             </div>
           </Hidden>
 
-          <div>
+          <div className={classes.rightContainer}>
             <CartButton />
 
             <Hidden smUp>

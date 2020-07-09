@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "./ProductCard";
 import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,15 @@ const ProductGrid = ({ products }) => {
           </Grid>
         ))
       ) : (
-        <p>No product available</p>
+        <div style={{ width: "100%" }}>
+          <Typography
+            color="error"
+            variant="body1"
+            style={{ textAlign: "center", padding: "1rem" }}
+          >
+            No product available
+          </Typography>
+        </div>
       )}
     </Grid>
   );

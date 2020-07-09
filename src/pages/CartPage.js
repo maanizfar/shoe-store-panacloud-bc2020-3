@@ -7,6 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import GlobalContext from "../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 10,
+  },
   heading: {
     textTransform: "uppercase",
     fontWeight: "bold",
@@ -28,7 +31,7 @@ const CartPage = () => {
   if (prices.length) totalPrice = prices.reduce((a, b) => a + b);
 
   return (
-    <Container>
+    <Container className={classes.root}>
       <Typography variant="h4" component="h4" className={classes.heading}>
         Your cart
       </Typography>

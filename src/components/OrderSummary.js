@@ -23,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
   checkoutBtn: {
     marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
   },
 }));
 
 const OrderSummary = () => {
   const classes = useStyles();
-  const { cart } = useContext(GlobalContext);
+  const { cart, cancelCartItem } = useContext(GlobalContext);
 
   const items = cart.map((p) => p.items);
   const prices = cart.map((p) => p.price * p.items);
@@ -37,6 +38,10 @@ const OrderSummary = () => {
   let totalPrice = 0;
   if (items.length) numOfItems = items.reduce((a, b) => a + b);
   if (prices.length) totalPrice = prices.reduce((a, b) => a + b);
+
+  function handleCheckout() {
+    cart.map((item) => cancelCartItem(item));
+  }
 
   return (
     <>
@@ -66,8 +71,9 @@ const OrderSummary = () => {
       <Button
         className={classes.checkoutBtn}
         variant="contained"
-        color="primary"
+        color="secondary"
         fullWidth
+        onClick={handleCheckout}
       >
         Checkout
       </Button>

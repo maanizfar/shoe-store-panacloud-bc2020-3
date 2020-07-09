@@ -2,39 +2,49 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => {
   const pContrastText = theme.palette.primary.contrastText;
 
   return {
     container: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(3),
       border: `0px solid transparent`,
-      borderBottomWidth: "2px",
+      borderBottomWidth: "4px",
       color: pContrastText,
       textDecoration: "none",
 
       "&:hover": {
         cursor: "pointer",
-        borderColor: pContrastText,
+        borderColor: theme.palette.grey[400],
       },
     },
 
+    active: {
+      borderColor: pContrastText,
+    },
     nameText: {
       color: pContrastText,
     },
   };
 });
 
-const NavLink = ({ name, to }) => {
+const NavLinkz = ({ name, to, end }) => {
   const classes = useStyles();
 
   return (
-    <Link to={to} className={classes.container}>
-      <Typography className={classes.nameText}>{name}</Typography>
-    </Link>
+    <NavLink
+      to={to}
+      className={classes.container}
+      activeClassName={classes.active}
+      end={end}
+    >
+      <Typography variant="button" className={classes.nameText}>
+        {name}
+      </Typography>
+    </NavLink>
   );
 };
 
-export default NavLink;
+export default NavLinkz;

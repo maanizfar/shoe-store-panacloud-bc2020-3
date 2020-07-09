@@ -9,6 +9,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import GlobalContext from "../state/GlobalContext";
+import { Outlet } from "react-router";
+import { AppBar, Tab, Tabs } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -16,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     minHeight: "80vh",
+
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
   drawer: {
     width: drawerWidth,
@@ -63,6 +69,8 @@ const ShopPage = ({ category }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { products } = useContext(GlobalContext);
 
+  const categories = ["All", "Running", "Football", "Casual", "Formal"];
+
   const allProductsForGender = products.filter(
     (p) => p.gender.toLowerCase() === category.toLowerCase()
   );
@@ -78,6 +86,26 @@ const ShopPage = ({ category }) => {
 
   return (
     <div className={classes.root}>
+      <Hidden mdUp>
+        <div className={classes.categoryNav}>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={selectedIndex}
+              onChange={handleListItemClick}
+              indicatorColor="primary"
+              textColor="secondary"
+              variant="scrollable"
+              scrollButtons="auto"
+              aria-label="scrollable auto tabs example"
+            >
+              {categories.map((c, index) => (
+                <Tab label={c} key={index} />
+              ))}
+            </Tabs>
+          </AppBar>
+        </div>
+      </Hidden>
+
       <Hidden smDown>
         <Drawer
           className={classes.drawer}
@@ -89,18 +117,16 @@ const ShopPage = ({ category }) => {
           <Toolbar />
           <div className={classes.drawerContainer}>
             <List>
-              {["All", "Running", "Football", "Casual", "Formal"].map(
-                (text, index) => (
-                  <ListItem
-                    button
-                    key={text}
-                    selected={selectedIndex === index}
-                    onClick={(event) => handleListItemClick(event, index)}
-                  >
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
+              {categories.map((text, index) => (
+                <ListItem
+                  button
+                  key={text}
+                  selected={selectedIndex === index}
+                  onClick={(event) => handleListItemClick(event, index)}
+                >
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
             </List>
           </div>
         </Drawer>
@@ -108,6 +134,7 @@ const ShopPage = ({ category }) => {
       <div style={{ width: "100%" }}>
         <ProductGrid products={productsByCategory} />
       </div>
+      <Outlet />
     </div>
   );
 };

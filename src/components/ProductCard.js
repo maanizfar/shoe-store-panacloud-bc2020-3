@@ -1,27 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
-import GlobalContext from "../state/GlobalContext";
+// import GlobalContext from "../state/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
     position: "relative",
+
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   media: {
-    height: 380,
+    height: 300,
 
     [theme.breakpoints.down("md")]: {
-      height: 260,
+      height: 220,
     },
     [theme.breakpoints.down("xs")]: {
-      height: 200,
+      height: 180,
     },
   },
 
@@ -69,14 +72,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = ({ product }) => {
   const classes = useStyles();
-  const { addToCart } = useContext(GlobalContext);
+  // const { addToCart } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
-  function handleAddToCart() {
-    addToCart(product);
+  // function handleAddToCart() {
+  //   addToCart(product);
+  // }
+
+  function handleClick() {
+    navigate(`/products/${product.slug}`);
   }
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={handleClick}>
       <Typography
         variant="h6"
         component="h3"
@@ -85,7 +93,7 @@ const ProductCard = ({ product }) => {
       >
         ${product.price}
       </Typography>
-      {product.items_left > 0 && (
+      {/* {product.items_left > 0 && (
         <IconButton
           color="inherit"
           className={classes.addToCardBtn}
@@ -93,7 +101,7 @@ const ProductCard = ({ product }) => {
         >
           <AddShoppingCartIcon />
         </IconButton>
-      )}
+      )} */}
       <CardMedia
         className={classes.media}
         image={product.imageURL}
