@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CartItemCard from "./CartItemCard";
-import GlobalContext from "../state/GlobalContext";
+import GlobalContext from "../../state/GlobalContext";
 import { Typography } from "@material-ui/core";
 
 const CartItemList = () => {

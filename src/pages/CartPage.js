@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
-import CartItemList from "../components/CartItemList";
+import CartItemList from "../components/Cart/CartItemList";
 import { Grid, Typography, Container } from "@material-ui/core";
-import OrderSummary from "../components/OrderSummary";
+import OrderSummary from "../components/Cart/OrderSummary";
 import { makeStyles } from "@material-ui/core/styles";
 import GlobalContext from "../state/GlobalContext";
 

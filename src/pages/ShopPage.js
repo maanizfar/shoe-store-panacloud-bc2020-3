@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import ProductGrid from "../components/ProductGrid";
+import ProductGrid from "../components/Products/ProductGrid";
 import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";

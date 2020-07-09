@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CancelIcon from "@material-ui/icons/Cancel";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
-import GlobalContext from "../state/GlobalContext";
+import GlobalContext from "../../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {

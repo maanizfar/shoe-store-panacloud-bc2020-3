@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import GlobalContext from "../state/GlobalContext";
+import GlobalContext from "../../state/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
