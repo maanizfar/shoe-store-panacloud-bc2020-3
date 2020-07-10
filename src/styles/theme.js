@@ -8,6 +8,8 @@ export const theme = createMuiTheme({
     secondary: {
       main: "#1f2833",
     },
-    background: {},
+  },
+  typography: {
+    fontFamily: "'Sahitya', serif",
   },
 });

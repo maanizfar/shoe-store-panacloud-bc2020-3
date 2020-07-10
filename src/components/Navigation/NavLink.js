@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => {
     },
     nameText: {
       color: pContrastText,
+      fontWeight: "bolder",
     },
   };
 });
